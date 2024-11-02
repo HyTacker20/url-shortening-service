@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "url-shortening-service"
+version = "0.1.0"
+description = ""
+authors = ["Andrii Hermak <hermak20102004@gmail.com>"]
+readme = "README.md"
+packages = [{include = "url_shortening_service"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.4"
+uvicorn = "^0.32.0"
+sqlalchemy = "^2.0.36"
+alembic = "^1.13.3"
+psycopg2 = "^2.9.10"
+asyncpg = "^0.30.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
