@@ -1,13 +1,19 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from db.base import init_models
+from endpoints.short_urls import router_url_shortener
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def get_application() -> FastAPI:
+    _app = FastAPI(title="URL Shortener")
+
+    @_app.on_event("startup")
+    async def startup():
+        await init_models()
+
+    _app.include_router(router_url_shortener, prefix="/shorten", tags=["url_shortener"])
+
+    return _app
 
 
-@app.get("/shorten/{shorten_url}")
-def get_original_url(shorten_url: str):
-    return
+app = get_application()

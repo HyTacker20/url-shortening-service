@@ -2,18 +2,20 @@ import os
 
 
 class Config:
+
     if os.environ.get("TESTING"):
         DB_USER = "postgres"
-        DB_PASSWORD = "admin"
-        DB_NAME = "test_fastapi"
+        DB_PASSWORD = "postgres"
+        DB_NAME = "url_shortening"
         DB_HOST = "localhost"
         DB_PORT = "5432"
     else:
         DB_USER = os.getenv("POSTGRES_USER", "postgres")
-        DB_PASSWORD = os.getenv("POSTGRES_PASSWORD", "admin")
-        DB_NAME = os.getenv("POSTGRES_NAME", "fastapi")
+        DB_PASSWORD = os.getenv("POSTGRES_PASSWORD", "postgres")
+        DB_NAME = os.getenv("POSTGRES_NAME", "url_shortening")
         DB_HOST = os.getenv("POSTGRES_HOST", "localhost")
         DB_PORT = os.getenv("POSTGRES_PORT", "5432")
+
     if os.environ.get("GITHUB_WORKFLOW"):
         DB_USER = "postgres"
         DB_PASSWORD = "admin"
