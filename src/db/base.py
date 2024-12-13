@@ -5,7 +5,7 @@ from core.config import Config
 
 Base = declarative_base()
 
-engine = create_async_engine(Config.DB_CONFIG, echo=True, future=True)
+engine = create_async_engine(Config.DB_ASYNC_CONFIG, echo=True, future=True)
 
 async_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 
