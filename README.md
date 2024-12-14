@@ -7,7 +7,7 @@ A simple and efficient service to shorten long URLs into concise, shareable link
 
 ## 📖 Overview
 
-This project provides a platform for users to generate shortened URLs that redirect to the original addresses. It offers a RESTful API enabling seamless integration and management of shortened links, including CRUD operations and access tracking.
+This project is solution of the **URL Shortening Service project from roadmap.sh (https://roadmap.sh/projects/url-shortening-service)**. It provides a platform for users to generate shortened URLs that redirect to the original addresses. The service offers a RESTful API enabling seamless integration and management of shortened links, including CRUD operations and access tracking.
 
 ---
 
@@ -17,19 +17,22 @@ This project provides a platform for users to generate shortened URLs that redir
 - 🔄 **Redirection**: Navigate users from the shortened URL to the original destination.
 - 📝 **CRUD Operations**: Create, read, update, and delete shortened URLs.
 - 📈 **Access Tracking**: Monitor the number of times each shortened URL is accessed.
-- ~~🆔 **Custom Aliases**: Allow users to define custom short codes for their URLs.~~ _in progress..._
-- ~~⏳ **Expiration Handling**: Set expiration times for shortened URLs to manage their validity.~~ _in progress..._
+
+[//]: # (- 🆔 **Custom Aliases**: Allow users to define custom short codes for their URLs.)
+
+[//]: # (- ⏳ **Expiration Handling**: Set expiration times for shortened URLs to manage their validity.)
 
 ---
 
 ## 🛠️ Technology Stack
 
+[//]: # (- **Caching**: Redis)
+
+[//]: # (- **Task Queue**: Celery)
+
+[//]: # (- **Containerization**: Docker)
 - **Backend**: Python with FastAPI
 - **Database**: PostgreSQL
-- **Caching**: Redis
-- **Task Queue**: Celery
-- **Containerization**: Docker
-- **Version Control**: Git
 - **Testing**: PyTest
 - **Documentation**: Swagger UI
 
@@ -40,39 +43,46 @@ This project provides a platform for users to generate shortened URLs that redir
 ### Prerequisites
 
 - **Python 3.8+**
-- **Docker & Docker Compose**
+
 - **PostgreSQL**
-- **Redis**
+
+[//]: # (- **Docker & Docker Compose**)
+[//]: # (- **Redis**)
 
 ### Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/url-shortening-service.git
+   git clone https://github.com/HyTacker20/url-shortening-service.git
    cd url-shortening-service
    ```
 
 2. **Set up a virtual environment**:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install poetry
    ```
 
 3. **Install dependencies**:
    ```bash
-   pip install -r requirements.txt
+   poetry install
+   poetry shell
    ```
 
 4. **Configure environment variables**:
    Create a `.env` file in the root directory with the following content:
    ```
-   DATABASE_URL=postgresql://postgres:password@localhost:5432/url_shortening
-   REDIS_URL=redis://localhost:6379/0
-   SECRET_KEY=your_secret_key
+   TESTING=True
+   
+   POSTGRES_USER=db_user
+   POSTGRES_PASSWORD=db_password
+   POSTGRES_NAME=db_name
+   POSTGRES_HOST=db_host
+   POSTGRES_PORT=db_port
    ```
 
-5. **Apply database migrations**:
+5. **Create and apply database migrations**:
    ```bash
+   alembic revision --autogenerate
    alembic upgrade head
    ```
 
@@ -83,16 +93,21 @@ This project provides a platform for users to generate shortened URLs that redir
 
 The service will be accessible at [http://localhost:8000](http://localhost:8000).
 
----
+[//]: # (---)
 
-## 🐳 Docker Deployment
+[//]: # (## 🐳 Docker Deployment)
 
-1. **Build and run the containers**:
-   ```bash
-   docker-compose up --build
-   ```
+[//]: # ()
+[//]: # (1. **Build and run the containers**:)
 
-The application will be available at [http://localhost:8000](http://localhost:8000).
+[//]: # (   ```bash)
+
+[//]: # (   docker-compose up --build)
+
+[//]: # (   ```)
+
+[//]: # ()
+[//]: # (The application will be available at [http://localhost:8000]&#40;http://localhost:8000&#41;.)
 
 ---
 
@@ -121,6 +136,8 @@ pytest
 
 ## 🗺️ Project Roadmap
 
+- [ ] Implement caching
+- [ ] Implement custom short code creation
 - [ ] Implement comprehensive logging.
 - [ ] Add exception handling mechanisms.
 - [ ] Develop a user-friendly frontend interface.
@@ -143,4 +160,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 📞 Contact
 
-For inquiries, please contact [your-email@example.com](mailto:your-email@example.com).
+For inquiries, please contact [hermak20102004@gmail.com](mailto:hermak20102004@gmail.com).
