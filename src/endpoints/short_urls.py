@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends
+from fastapi_cache.decorator import cache
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from db.repositories.short_urls import ShortURLService, get_short_url_service
-from schemas.short_urls import ShortURLResponse, ShortURLCreate, ShortURLWithStatsResponse
+from src.db.repositories.short_urls import ShortURLService, get_short_url_service
+from src.schemas.short_urls import ShortURLResponse, ShortURLCreate, ShortURLWithStatsResponse
 
-from db.base import get_session
+from src.db.base import get_session
 
 router_url_shortener = APIRouter()
 
@@ -17,8 +18,8 @@ async def create_url(
 ):
     return await url_shortener_service.create(new_object, db)
 
-
 @router_url_shortener.get("/{short_code}", response_model=ShortURLResponse)
+@cache(expire=60)
 async def get_url(
         short_code: str,
         url_shortener_service: ShortURLService = Depends(get_short_url_service),

@@ -1,16 +1,12 @@
-import hashlib
-import secrets
-
 from fastapi import HTTPException
 from fastapi.responses import Response
-from pydantic import AnyUrl
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from db.models.short_urls import ShortURL
-from schemas.short_urls import ShortURLCreate, ShortURLWithStatsResponse, ShortURLResponse
-from utils.url_shortener import generate_short_code
+from src.db.models.short_urls import ShortURL
+from src.schemas.short_urls import ShortURLCreate, ShortURLWithStatsResponse, ShortURLResponse
+from src.utils.url_shortener import generate_short_code
 
 
 class ShortURLService:
@@ -18,7 +14,7 @@ class ShortURLService:
         self.model = ShortURL
 
     async def create(self, new_object: ShortURLCreate, db: AsyncSession) -> ShortURL:
-        object_dict = new_object.dict()
+        object_dict = new_object.model_dump()
         object_dict["url"] = str(new_object.url)
         object_dict["short_code"] = generate_short_code(new_object.url)
 

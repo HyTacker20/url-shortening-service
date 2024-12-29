@@ -42,12 +42,12 @@ This project is solution of the **URL Shortening Service project from roadmap.sh
 
 ### Prerequisites
 
-- **Python 3.8+**
+- **Python 3.13**
 
 - **PostgreSQL**
 
-[//]: # (- **Docker & Docker Compose**)
-[//]: # (- **Redis**)
+- **Docker & Docker Compose**
+- **Redis**
 
 ### Installation
 
@@ -93,21 +93,21 @@ This project is solution of the **URL Shortening Service project from roadmap.sh
 
 The service will be accessible at [http://localhost:8000](http://localhost:8000).
 
-[//]: # (---)
+---
 
-[//]: # (## 🐳 Docker Deployment)
+## 🐳 Docker Deployment
 
-[//]: # ()
-[//]: # (1. **Build and run the containers**:)
 
-[//]: # (   ```bash)
+1. **Build and run the containers**:
 
-[//]: # (   docker-compose up --build)
+   ```bash
 
-[//]: # (   ```)
+   docker-compose up --build
 
-[//]: # ()
-[//]: # (The application will be available at [http://localhost:8000]&#40;http://localhost:8000&#41;.)
+   ```
+
+
+The application will be available at [http://localhost:8000](http://localhost:8000).
 
 ---
 
@@ -136,7 +136,7 @@ pytest
 
 ## 🗺️ Project Roadmap
 
-- [ ] Implement caching
+- [x] Implement caching
 - [ ] Implement custom short code creation
 - [ ] Implement comprehensive logging.
 - [ ] Add exception handling mechanisms.

@@ -2,7 +2,7 @@ from datetime import datetime, UTC
 
 from sqlalchemy import Column, Integer, String, DateTime
 
-from db.base import Base
+from src.db.base import Base
 
 
 class ShortURL(Base):

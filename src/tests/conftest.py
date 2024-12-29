@@ -7,9 +7,9 @@ from fastapi import FastAPI
 from httpx import AsyncClient
 from pydantic import AnyUrl
 
-from db.base import async_session, engine, Base
-from db.models.short_urls import ShortURL
-from utils.url_shortener import generate_short_code
+from src.db.base import async_session, engine, Base
+from src.db.models.short_urls import ShortURL
+from src.utils.url_shortener import generate_short_code
 
 os.environ["TESTING"] = "True"  # Env variable for switching to test db connection
 
