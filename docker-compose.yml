@@ -1,17 +1,21 @@
 services:
-  fastapi_service:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+  backend:
+    build: backend
     container_name: fastapi_service
     depends_on:
       - db_postgres
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - backend/.env
     volumes:
-      - ./:/backend
+      - ./backend:/backend
+
+#  frontend:
+#    build:
+#      context: ./frontend
+#    ports:
+#      - "3000:3000"
 
   redis-cache:
     image: redis:alpine

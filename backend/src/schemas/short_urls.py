@@ -1,12 +1,14 @@
 import re
 from datetime import datetime
+from typing import Optional
 from urllib.parse import urlparse, urlunparse
 
-from pydantic import BaseModel, AnyUrl, ConfigDict, validator, field_validator
+from pydantic import BaseModel, AnyUrl, ConfigDict, validator, field_validator, Field
 
 
 class ShortURLCreate(BaseModel):
     url: AnyUrl
+    short_code: Optional[str] = Field(None, max_length=50, min_length=6)
 
     @field_validator("url", mode="before")
     @classmethod

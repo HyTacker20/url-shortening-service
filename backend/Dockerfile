@@ -21,13 +21,10 @@ RUN pip install maturin
 RUN mkdir "backend"
 WORKDIR /backend
 
-# Copy poetry files
 COPY ./poetry.lock ./pyproject.toml ./
 
-# Install Poetry
 RUN pip install poetry
 
-# Install `pendulum` and configure Poetry
 RUN pip install pendulum==3.0.0 --no-build-isolation
 RUN poetry config virtualenvs.create false
 

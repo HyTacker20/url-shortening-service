@@ -1,3 +1,5 @@
+import random
+
 from fastapi import HTTPException
 from fastapi.responses import Response
 from sqlalchemy import select, update
@@ -15,8 +17,10 @@ class ShortURLService:
 
     async def create(self, new_object: ShortURLCreate, db: AsyncSession) -> ShortURL:
         object_dict = new_object.model_dump()
+        print(object_dict)
         object_dict["url"] = str(new_object.url)
-        object_dict["short_code"] = generate_short_code(new_object.url)
+        if not new_object.short_code:
+            object_dict["short_code"] = generate_short_code(new_object.url)
 
         instance = self.model(**object_dict)
         db.add(instance)

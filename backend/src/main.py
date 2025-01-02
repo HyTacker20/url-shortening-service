@@ -3,8 +3,9 @@ from contextlib import asynccontextmanager
 import redis
 from fastapi import FastAPI
 from fastapi_cache import FastAPICache
+from starlette.middleware.cors import CORSMiddleware
 
-from src.db.base import init_models
+from .db.base import init_models
 from fastapi_cache.backends.redis import RedisBackend
 from src.endpoints.short_urls import router_url_shortener
 
@@ -20,6 +21,19 @@ async def lifespan(app: FastAPI):
 def get_application() -> FastAPI:
     _app = FastAPI(title="URL Shortener", lifespan=lifespan)
     _app.include_router(router_url_shortener, prefix="/shorten", tags=["url_shortener"])
+
+    origins = [
+        "http://localhost:3000",
+        "localhost:3000"
+    ]
+
+    _app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"]
+    )
 
     @_app.get("/")
     def read_root():
